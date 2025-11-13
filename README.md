@@ -1,1 +1,0 @@
-# Gregory_ProjetoAlgoritmos2
