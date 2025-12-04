@@ -119,7 +119,7 @@ void cadastrarCurso(Curso vetCurso[], int &contCursos) {
     cin.ignore();
     cin.getline(vetCurso[contCursos].nomeCurso, 50);
 
-    cout << "Digite a carga horaria: ";
+    cout << "Digite a carga horaria (em horas): ";
     cin >> vetCurso[contCursos].cargaH;
 
     cout << "Digite o numero de vagas: ";
@@ -150,27 +150,32 @@ void cadastrarAluno(Aluno vetAluno[], int &contAlunos, Curso vetCurso[], int con
     cout << "Idade: ";
     cin >> vetAluno[contAlunos].idade;
 
-    int codigo;
+    char cursoDigitado[50];
     bool existe;
+    int codigoEncontrado = -1;
+
+
+    cout << "Nome do curso: ";
+    cin.ignore();
 
     do {
-        cout << "Codigo do curso: ";
-        cin >> codigo;
+        cin.getline(cursoDigitado, 50);
 
         existe = false;
+
         for (int i = 0; i < contCursos; i++) {
-            if (vetCurso[i].codigo == codigo) {
+            if (strcmp(vetCurso[i].nomeCurso, cursoDigitado) == 0) {
+                vetAluno[contAlunos].codigoCurso = vetCurso[i].codigo;
                 existe = true;
                 break;
             }
         }
 
         if (!existe)
-            cout << "Codigo nao encontrado.\n";
+            cout << "Curso nao encontrado. Tente novamente.\n";
 
-    } while (!existe);
+} while (!existe);
 
-    vetAluno[contAlunos].codigoCurso = codigo;
     contAlunos++;
     cout << "Aluno cadastrado com sucesso!\n";
 }
@@ -227,7 +232,7 @@ void listarCursos(Curso vetCurso[], int contCursos) {
     for (int i = 0; i < contCursos; i++) {
         cout << "\nCurso: " << vetCurso[i].nomeCurso << endl;
         cout << "Codigo: " << vetCurso[i].codigo << endl;
-        cout << "Carga horaria: " << vetCurso[i].cargaH << endl;
+        cout << "Carga horaria: " << vetCurso[i].cargaH << "h" << endl;
         cout << "Vagas: " << vetCurso[i].vagas << endl;
     }
 }
