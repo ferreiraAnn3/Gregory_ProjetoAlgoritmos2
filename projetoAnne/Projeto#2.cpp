@@ -25,9 +25,9 @@ struct Aluno {
 };
 
 struct Dados {
-    double rg;
-    double cpf;
-    double telefone;
+    char rg[15];
+    char cpf[15];
+    char telefone[15];
     int matricula;
 };
 
@@ -210,11 +210,12 @@ void cadastrarDados(Aluno vetAluno[], int contAlunos, Dados vetDados[], int &con
     }
 
     cout << "Digite o RG: ";
-    cin >> vetDados[contDados].rg;
+    cin.ignore();
+    cin.getline(vetDados[contDados].rg, 15);
     cout << "Digite o CPF: ";
-    cin >> vetDados[contDados].cpf;
+    cin.getline(vetDados[contDados].cpf, 15);
     cout << "Digite o telefone: ";
-    cin >> vetDados[contDados].telefone;
+    cin.getline(vetDados[contDados].telefone, 15);
 
 vetDados[contDados].matricula = nMatricula;
         contDados++;
